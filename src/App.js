@@ -14,10 +14,16 @@ function App() {
     setTasks([...taskService.getAllTasks()]);
   };
 
+  const handleUpdateTask = (task, concluir) => {
+    task.completed = concluir;
+    taskService.updateTask(task.id, task);
+    setTasks([...taskService.getAllTasks()]);
+  };
+
   return (
     <div className="App">
       <h1>Minha lista de tarefas</h1>
-      <TaskList tasks={tasks} />
+      <TaskList tasks={tasks} onUpdatetask={handleUpdateTask} />
       <AddTaskForm onAddTask={handleAddTask} />
     </div>
   );
