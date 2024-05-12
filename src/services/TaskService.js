@@ -1,13 +1,18 @@
 // src/services/TaskServices.js
 
+const key = "@tasks";
+
 class TaskService {
   constructor() {
-    this.tasks = [];
+    this.tasks = localStorage.getItem(key)
+      ? JSON.parse(localStorage.getItem(key))
+      : [];
   }
 
   //Método para adicionar uma nova tarefa
   addTask(task) {
     this.tasks.push(task);
+    localStorage.setItem(key, JSON.stringify(this.tasks));
   }
 
   // Método para listar todas as tarefas
@@ -21,6 +26,7 @@ class TaskService {
 
     if (index !== -1) {
       this.tasks[index] = task;
+      localStorage.setItem(key, JSON.stringify(this.tasks));
     }
   }
 
@@ -30,6 +36,7 @@ class TaskService {
 
     if (index !== -1) {
       this.tasks.splice(index, 1);
+      localStorage.setItem(key, JSON.stringify(this.tasks));
     }
   }
 }
