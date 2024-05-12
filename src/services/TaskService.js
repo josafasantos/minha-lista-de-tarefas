@@ -31,9 +31,15 @@ class TaskService {
   }
 
   //Método para excluir uma tarefa
-  deleteTask(id) {
-    const index = this.tasks.findIndex((task) => task.id === id);
+  deleteTask(id, promptConfirmation = true) {
+    if (promptConfirmation) {
+      const confirmation = window.confirm(
+        "Tem certeza que deseja excluir esta tarefa?"
+      );
+      if (!confirmation) return; // Se o usuário cancelar, sai da função sem excluir a tarefa
+    }
 
+    const index = this.tasks.findIndex((task) => task.id === id);
     if (index !== -1) {
       this.tasks.splice(index, 1);
       localStorage.setItem(key, JSON.stringify(this.tasks));
