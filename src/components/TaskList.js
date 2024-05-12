@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function TaskList({ tasks, onUpdatetask }) {
+export default function TaskList({ tasks, onUpdatetask, onDeletetask }) {
   return (
     <div>
       <h2>Lista de Tarefas</h2>
@@ -9,16 +9,24 @@ export default function TaskList({ tasks, onUpdatetask }) {
           <li key={task.id}>
             {task.completed === false ? (
               <>
-                {task.title}
+                {task.title} | {task.description} | {task.dueDate} |
+                {task.priority}
                 <button onClick={() => onUpdatetask(task, true)}>
                   Concluir
                 </button>
+                <button onClick={() => onDeletetask(task)}>Excluir</button>
               </>
             ) : (
               <>
-                <s>{task.title}</s>
+                <s>
+                  {task.title} | {task.description} | {task.dueDate} |
+                  {task.priority}
+                </s>
                 <button onClick={() => onUpdatetask(task, false)}>
                   Não concluir
+                </button>
+                <button onClick={() => onDeletetask(task, true)}>
+                  Excluir
                 </button>
               </>
             )}

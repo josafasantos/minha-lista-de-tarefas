@@ -20,10 +20,19 @@ function App() {
     setTasks([...taskService.getAllTasks()]);
   };
 
+  const handleDeleteTask = (task) => {
+    taskService.deleteTask(task.id);
+    setTasks([...taskService.getAllTasks()]);
+  };
+
   return (
     <div className="App">
       <h1>Minha lista de tarefas</h1>
-      <TaskList tasks={tasks} onUpdatetask={handleUpdateTask} />
+      <TaskList
+        tasks={tasks}
+        onUpdatetask={handleUpdateTask}
+        onDeletetask={handleDeleteTask}
+      />
       <AddTaskForm onAddTask={handleAddTask} />
     </div>
   );
