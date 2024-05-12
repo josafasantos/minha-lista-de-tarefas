@@ -12,8 +12,6 @@ class TaskService {
 
   // Método para listar todas as tarefas
   getAllTasks() {
-    console.log("getAllTasks");
-    console.log(this.tasks);
     return this.tasks;
   }
 
