@@ -25,11 +25,6 @@ function App() {
     setTasks([...taskService.getAllTasks()]);
   };
 
-  const handleEdittask = (task) => {
-    taskService.updateTask(task.id, task);
-    setTasks([...taskService.getAllTasks()]);
-  };
-
   return (
     <div className="App">
       <h1>Minha lista de tarefas</h1>
@@ -37,7 +32,6 @@ function App() {
         tasks={tasks}
         onUpdateTask={handleUpdateTask}
         onDeleteTask={handleDeleteTask}
-        onEditTask={handleEdittask}
       />
       <AddTaskForm onAddTask={handleAddTask} />
     </div>

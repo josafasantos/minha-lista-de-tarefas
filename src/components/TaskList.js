@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 
-export default function TaskList({
-  tasks,
-  onUpdateTask,
-  onDeleteTask,
-  onEditTask,
-}) {
+export default function TaskList({ tasks, onUpdateTask, onDeleteTask }) {
   const [editedTaskId, setEditedTaskId] = useState(null);
   const [editedTitle, setEditedTitle] = useState("");
   const [editedDescription, setEditedDescription] = useState("");
