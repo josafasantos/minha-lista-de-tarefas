@@ -5,6 +5,7 @@ export default function AddTaskForm({ onAddTask }) {
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
   const [dueDate, setDueDate] = useState("");
+  const [category, setCategory] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,6 +18,7 @@ export default function AddTaskForm({ onAddTask }) {
       description: description,
       priority: priority,
       dueDate: dueDate,
+      category: category,
       completed: false,
     };
 
@@ -26,6 +28,7 @@ export default function AddTaskForm({ onAddTask }) {
     setDescription("");
     setPriority("");
     setDueDate("");
+    setCategory("");
   };
 
   const handlePrioridade = (e) => {
@@ -73,6 +76,14 @@ export default function AddTaskForm({ onAddTask }) {
           onChange={(e) => setDueDate(e.target.value)}
         />
       </label>
+      <br />
+      <br />
+      <input
+        type="text"
+        placeholder="Digite a categoria da tarefa"
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+      />
       <br />
       <br />
       <button type="submit">Adicionar Tarefa</button>
