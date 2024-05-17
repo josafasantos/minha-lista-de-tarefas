@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./TaskList.module.scss";
 
 export default function TaskList({ tasks, onUpdateTask, onDeleteTask }) {
   const [editedTaskId, setEditedTaskId] = useState(null);
@@ -40,6 +41,7 @@ export default function TaskList({ tasks, onUpdateTask, onDeleteTask }) {
     if (filter === "all") return true;
     if (filter === "completed") return task.completed;
     if (filter === "pending") return !task.completed;
+    return true;
   });
 
   const sortedTasks = [...filteredTasks].sort((a, b) => {
@@ -52,12 +54,12 @@ export default function TaskList({ tasks, onUpdateTask, onDeleteTask }) {
       );
     }
     if (sort === "alphabetical") return a.title.localeCompare(b.title);
+    return 0;
   });
 
   return (
-    <div>
-      <h2>Lista de Tarefas</h2>
-      <div>
+    <div className={styles.Lista}>
+      <div className={styles.Filtro}>
         <label>
           Filtrar por:
           <select value={filter} onChange={(e) => setFilter(e.target.value)}>
@@ -80,7 +82,7 @@ export default function TaskList({ tasks, onUpdateTask, onDeleteTask }) {
         {sortedTasks.map((task) => (
           <li key={task.id}>
             {editedTaskId === task.id ? (
-              <div>
+              <div className={styles.FormEdit}>
                 <input
                   type="text"
                   value={editedTitle}
@@ -114,17 +116,19 @@ export default function TaskList({ tasks, onUpdateTask, onDeleteTask }) {
                 <button onClick={handleSave}>Salvar</button>
               </div>
             ) : (
-              <div>
+              <div className={styles.Tabela}>
                 {task.completed ? (
-                  <s>
+                  <div>
+                    <s>
+                      {task.title} | {task.description} | {task.priority} |
+                      {task.dueDate} | {task.category}
+                    </s>
+                  </div>
+                ) : (
+                  <div>
                     {task.title} | {task.description} | {task.priority} |
                     {task.dueDate} | {task.category}
-                  </s>
-                ) : (
-                  <>
-                    {task.title} | {task.description} |{task.priority} |
-                    {task.dueDate} | {task.category}
-                  </>
+                  </div>
                 )}
                 <button onClick={() => handleEdit(task)}>Editar</button>
                 <button onClick={() => onUpdateTask(task, !task.completed)}>

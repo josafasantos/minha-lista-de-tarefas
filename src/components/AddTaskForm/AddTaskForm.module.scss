@@ -1,0 +1,30 @@
+.Formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  margin: 3rem;
+  width: 600px;
+
+  input,
+  button {
+    padding: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  select {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  label {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 1rem;
+  }
+}

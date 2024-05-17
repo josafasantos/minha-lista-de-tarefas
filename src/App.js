@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import TaskService from "./services/TaskService.js";
-import TaskList from "./components/TaskList.js";
-import AddTaskForm from "./components/AddTaskForm.js";
+import TaskList from "./components/TaskList/index.js";
+import AddTaskForm from "./components/AddTaskForm/index.js";
+import styles from "./App.module.scss";
 
 const taskService = new TaskService();
 
@@ -26,8 +27,8 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>Minha lista de tarefas</h1>
+    <div className={styles.App}>
+      <h1>Minha Lista De Tarefas</h1>
       <TaskList
         tasks={tasks}
         onUpdateTask={handleUpdateTask}

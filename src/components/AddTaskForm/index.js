@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./AddTaskForm.module.scss";
 
 export default function AddTaskForm({ onAddTask }) {
   const [title, setTitle] = useState("");
@@ -38,54 +39,45 @@ export default function AddTaskForm({ onAddTask }) {
   const prioridades = ["Alta", "Média", "Baixo"];
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.Formulario}>
       <input
         type="text"
         placeholder="Digite o título da tarefa"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <br />
-      <br />
+
       <input
         type="text"
         placeholder="Digite a descrição da tarefa"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <br />
-      <br />
-      <label>
-        Selecione uma prioridade:
-        <select value={priority} onChange={handlePrioridade}>
-          <option value="">Selecione...</option>
-          {prioridades.map((opcao, index) => (
-            <option key={index} value={opcao}>
-              {opcao}
-            </option>
-          ))}
-        </select>
-      </label>
-      <br />
-      <br />
-      <label>
-        Escolha uma data:
-        <input
-          type="date"
-          value={dueDate}
-          onChange={(e) => setDueDate(e.target.value)}
-        />
-      </label>
-      <br />
-      <br />
+
+      <label>Selecione uma prioridade:</label>
+      <select value={priority} onChange={handlePrioridade}>
+        <option value="">Selecione...</option>
+        {prioridades.map((opcao, index) => (
+          <option key={index} value={opcao}>
+            {opcao}
+          </option>
+        ))}
+      </select>
+
+      <label>Escolha uma data:</label>
+      <input
+        type="date"
+        value={dueDate}
+        onChange={(e) => setDueDate(e.target.value)}
+      />
+
       <input
         type="text"
         placeholder="Digite a categoria da tarefa"
         value={category}
         onChange={(e) => setCategory(e.target.value)}
       />
-      <br />
-      <br />
+
       <button type="submit">Adicionar Tarefa</button>
     </form>
   );
